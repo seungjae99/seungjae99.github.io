@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>seungjae99</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0f1117;
+      color: #c9d1d9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      padding: 60px 16px 100px;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      margin-bottom: 56px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #e6edf3;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #8b949e;
+      font-size: 15px;
+    }
+
+    .header a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+
+    .header a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8b949e;
+      margin-bottom: 16px;
+    }
+
+    /* ── Project cards ── */
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background: #1e2130;
+      border: 1px solid #2d3148;
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+
+    .card:hover {
+      border-color: #58a6ff;
+    }
+
+    .card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #8b949e;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #2d3148;
+      color: #8b949e;
+      white-space: nowrap;
+    }
+
+    .arrow {
+      color: #444d5a;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="header">
+      <h1>seungjae99</h1>
+      <p>Project reports and system overviews. Source on <a href="https://github.com/seungjae99" target="_blank">GitHub</a>.</p>
+    </div>
+
+    <div class="section-label">Projects</div>
+
+    <div class="projects">
+
+      <a class="card" href="https://seungjae99.github.io/rl_kill_switch/" target="_blank">
+        <div class="card-body">
+          <div class="card-title">rl_kill_switch</div>
+          <div class="card-desc">ROS2 safety node for autonomous tugboat — trigger-based PWM kill switch with serial and network monitoring</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag">ROS2</span>
+          <span class="tag">Python</span>
+        </div>
+        <span class="arrow">&#8250;</span>
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>

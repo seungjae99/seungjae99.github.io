@@ -6,130 +6,232 @@
   <title>seungjae99</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0c10;
+      --surface: #111318;
+      --surface-hover: #161a22;
+      --border: #1e2230;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted: #484f58;
+      --accent: #4493f8;
+      --tag-bg: #161a22;
+      --tag-text: #6e7681;
+    }
+
     body {
-      background: #0f1117;
-      color: #c9d1d9;
+      background: var(--bg);
+      color: var(--text-secondary);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: 15px;
+      font-size: 14px;
+      line-height: 1.7;
+      padding: 80px 20px 120px;
+    }
+
+    .page { max-width: 680px; margin: 0 auto; }
+
+    /* ── Profile ── */
+    .profile {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      margin-bottom: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -1px;
+    }
+
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .profile-body h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .profile-body p {
+      font-size: 14px;
+      color: var(--text-secondary);
       line-height: 1.65;
-      padding: 60px 16px 100px;
+      margin-bottom: 16px;
+      max-width: 480px;
     }
-    .page {
-      max-width: 760px;
-      margin: 0 auto;
-    }
-    .header {
-      margin-bottom: 56px;
-    }
-    .header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      color: #e6edf3;
-      margin-bottom: 8px;
-    }
-    .header p {
-      color: #8b949e;
-      font-size: 15px;
-    }
-    .header a {
-      color: #58a6ff;
+
+    .profile-links { display: flex; gap: 16px; }
+
+    .profile-links a {
+      font-size: 13px;
+      color: var(--text-muted);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
     }
-    .header a:hover {
-      text-decoration: underline;
-    }
+
+    .profile-links a:hover { color: var(--accent); }
+
+    .profile-links a svg { width: 14px; height: 14px; }
+
+    /* ── Section label ── */
     .section-label {
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-weight: 500;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #8b949e;
-      margin-bottom: 16px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
     }
+
+    /* ── Cards ── */
     .projects {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
     }
+
     .card {
-      background: #1e2130;
-      border: 1px solid #2d3148;
-      border-radius: 8px;
-      padding: 20px 24px;
+      background: var(--surface);
+      padding: 18px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
       text-decoration: none;
-      transition: border-color 0.15s;
+      transition: background 0.12s;
+      border-bottom: 1px solid var(--border);
     }
-    .card:hover {
-      border-color: #58a6ff;
-    }
-    .card-body {
-      flex: 1;
-      min-width: 0;
-    }
+
+    .card:last-child { border-bottom: none; }
+    .card:hover { background: var(--surface-hover); }
+    .card:hover .arrow { color: var(--accent); transform: translateX(2px); }
+
+    .card-body { flex: 1; min-width: 0; }
+
     .card-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: #e6edf3;
-      margin-bottom: 4px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+      font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
     }
+
     .card-desc {
-      font-size: 13px;
-      color: #8b949e;
+      font-size: 12.5px;
+      color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .card-tags {
+
+    .card-right {
       display: flex;
-      gap: 6px;
+      align-items: center;
+      gap: 12px;
       flex-shrink: 0;
     }
+
+    .card-tags { display: flex; gap: 5px; }
+
     .tag {
       font-size: 11px;
-      font-weight: 500;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
-      background: #2d3148;
-      color: #8b949e;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid var(--border);
       white-space: nowrap;
+      font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
     }
+
     .arrow {
-      color: #444d5a;
+      color: var(--text-muted);
       font-size: 16px;
-      flex-shrink: 0;
+      transition: color 0.12s, transform 0.12s;
     }
+
     .loading {
-      color: #8b949e;
+      padding: 24px 22px;
       font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer {
+      margin-top: 48px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <div class="header">
-      <h1>seungjae99</h1>
-      <p>Project reports and system overviews. Source on <a href="https://github.com/seungjae99" target="_blank">GitHub</a>.</p>
+
+    <div class="profile">
+      <div class="avatar" id="avatar">SJ</div>
+      <div class="profile-body">
+        <h1>Seungjae Lee</h1>
+        <p>Building robotics systems and exploring machine learning.<br>Projects in ROS2, deep learning, and autonomous systems.</p>
+        <div class="profile-links">
+          <a href="https://github.com/seungjae99" target="_blank">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
     </div>
+
     <div class="section-label">Projects</div>
     <div class="projects" id="projects">
-      <span class="loading">Loading projects...</span>
+      <div class="loading">Loading...</div>
     </div>
+
+    <div class="footer">
+      Updated automatically · Source on <a href="https://github.com/seungjae99" target="_blank">GitHub</a>
+    </div>
+
   </div>
 
   <script>
-    // ── 프로젝트 목록 ──────────────────────────────────────────
-    // 새 프로젝트 추가할 때 여기에만 이름 추가하면 끝
+    // ── 새 프로젝트는 여기에만 추가 ──────────────────────────
     const REPOS = [
       "rl_kill_switch",
       "makemore_benchmark",
     ];
-    // ──────────────────────────────────────────────────────────
+    // ────────────────────────────────────────────────────────
 
     const USERNAME = "seungjae99";
+
+    const avatarEl = document.getElementById("avatar");
+    const img = document.createElement("img");
+    img.src = `https://github.com/${USERNAME}.png`;
+    img.onload = () => { avatarEl.innerHTML = ""; avatarEl.appendChild(img); };
 
     function cardHTML(repo, meta) {
       const url = `https://${USERNAME}.github.io/${repo}/`;
@@ -140,20 +242,20 @@
             <div class="card-title">${repo}</div>
             <div class="card-desc">${meta.desc || ""}</div>
           </div>
-          <div class="card-tags">${tags}</div>
-          <span class="arrow">&#8250;</span>
+          <div class="card-right">
+            <div class="card-tags">${tags}</div>
+            <span class="arrow">›</span>
+          </div>
         </a>
       `;
     }
 
     async function fetchMeta(repo) {
-      const url = `https://${USERNAME}.github.io/${repo}/meta.json`;
       try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("not found");
+        const res = await fetch(`https://${USERNAME}.github.io/${repo}/meta.json`);
+        if (!res.ok) throw new Error();
         return await res.json();
       } catch {
-        // meta.json 없으면 빈 메타로 카드는 그냥 표시
         return { desc: "", tags: [] };
       }
     }
@@ -161,10 +263,7 @@
     async function render() {
       const container = document.getElementById("projects");
       const results = await Promise.all(
-        REPOS.map(async (repo) => {
-          const meta = await fetchMeta(repo);
-          return cardHTML(repo, meta);
-        })
+        REPOS.map(async (repo) => cardHTML(repo, await fetchMeta(repo)))
       );
       container.innerHTML = results.join("");
     }

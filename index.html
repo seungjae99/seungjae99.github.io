@@ -242,6 +242,11 @@
       <div class="loading">Loading...</div>
     </div>
 
+    <div id="portfolios-section" style="display:none;">
+      <div class="section-label" style="margin-top: 44px;">Project Portfolios</div>
+      <div class="projects" id="portfolios"></div>
+    </div>
+
     <div class="footer">
       Updated automatically · Source on <a href="https://github.com/seungjae99" target="_blank">GitHub</a>
     </div>
@@ -267,8 +272,7 @@
     img.src = `https://github.com/${USERNAME}.png`;
     img.onload = () => { avatarEl.innerHTML = ""; avatarEl.appendChild(img); };
 
-    function cardHTML(repo, meta) {
-      const url = `https://${USERNAME}.github.io/${repo}/`;
+    function cardHTML(repo, meta, url) {
       const tags = (meta.tags || []).map(t => `<span class="tag">${t}</span>`).join("");
       return `
         <a class="card" href="${url}">
@@ -294,12 +298,34 @@
       }
     }
 
+    async function hasPortfolio(repo) {
+      try {
+        const res = await fetch(`https://${USERNAME}.github.io/${repo}/port.html`, { method: "HEAD" });
+        return res.ok;
+      } catch {
+        return false;
+      }
+    }
+
     async function render() {
-      const container = document.getElementById("projects");
-      const results = await Promise.all(
-        REPOS.map(async (repo) => cardHTML(repo, await fetchMeta(repo)))
+      const entries = await Promise.all(
+        REPOS.map(async (repo) => {
+          const [meta, portfolio] = await Promise.all([fetchMeta(repo), hasPortfolio(repo)]);
+          return { repo, meta, portfolio };
+        })
       );
-      container.innerHTML = results.join("");
+
+      document.getElementById("projects").innerHTML = entries
+        .map(({ repo, meta }) => cardHTML(repo, meta, `https://${USERNAME}.github.io/${repo}/`))
+        .join("");
+
+      const portfolioEntries = entries.filter(e => e.portfolio);
+      if (portfolioEntries.length > 0) {
+        document.getElementById("portfolios").innerHTML = portfolioEntries
+          .map(({ repo, meta }) => cardHTML(repo, meta, `https://${USERNAME}.github.io/${repo}/port.html`))
+          .join("");
+        document.getElementById("portfolios-section").style.display = "";
+      }
     }
 
     render();
